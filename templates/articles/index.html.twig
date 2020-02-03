@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}SymphArt Articles
+{% endblock %}
+{% block body %}
+	{% if articles %}
+		<table id="articles" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Article Title</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for article in articles %}
+					<tr>
+                        <td>{{ article.title }}</td>
+                        <td>
+						<a class="btn btn-dark text-white" href="/PHP/Symfony/symphart/public/article/{{ article.id }}"> View</a>
+						<a class="btn btn-info text-white" href="/PHP/Symfony/symphart/public/article/edit/{{ article.id }}"> Edit</a>
+						<a class="btn btn-danger text-white delete-article" data-id="{{ article.id }}" href="#"> Delete</a>
+						</td>
+                    </tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>There is no article to display</p>
+	{% endif %}
+
+	{% block javascripts %}
+		<script src="/PHP/Symfony/symphart/public/js/main.js"></script>
+	{% endblock %}
+{% endblock %}
